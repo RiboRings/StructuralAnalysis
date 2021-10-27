@@ -1,0 +1,143 @@
+---
+title: "Granzyme sequence reconstruction"
+author: "Giulio Benedetti"
+date: "7/4/2021"
+output: html_document
+---
+
+I call the libraries _pahngorn_ and _seqinr_, import an MSA of hemoglobin and read it with the _clustal_ format.
+
+```{r}
+library(phangorn)
+library(seqinr)
+library(stringr)
+
+aln_file <- '../MSA/msa_clustalw.aln'
+
+msa <- read.alignment(aln_file, format = 'clustal')
+```
+
+I show the original names of the aligned sequences.
+
+```{r}
+msa$nam
+```
+
+I use regex to simplify the names of the sequences and convert msa to a list-like object usable with _phangorn_ using an aminoacidic dictionary.
+
+```{r}
+msa$nam <- regmatches(msa$nam, gregexpr("\\[.+?\\]", msa$nam))
+msa$nam <- gsub('\\[', '', msa$nam)
+msa$nam <- gsub('\\]', '', msa$nam)
+msa$nam
+```
+
+I calculate pairwise distances among sequences with the _phangorn_ function `dist.ml`, which creates a **distance matrix** based on the model **Blosum62**.
+
+```{r}
+msa <- as.phyDat(msa, type = 'AA')
+dist_mat <- dist.ml(msa, model = 'Blosum62')
+dist_mat
+```
+I convert the distant matrix into a matrix object and visualise it as a heat map with the command`heatmap()` with `symm = TRUE` because we are dealing with a symmetrical square matrix.
+
+```{r}
+mtx <- as.matrix(dist_mat)
+heatmap(mtx, symm = TRUE)
+```
+
+The heatmap suggests that the two human isoforms are the closest to one another, followed by the the two primate species. Sus scrofa and Equus caballus might be employed as outgroups, as they score relatively low and thus fall the furthest apart from the remaining species.
+
+Next I carry out a phylogenetic reconstruction through neighbour joining with the command `NJ()` and plot it with `plot()`.
+
+```{r}
+nj_tree <- NJ(dist_mat)
+
+plot(nj_tree)
+plot(nj_tree, type = 'unrooted')
+```
+
+I root the tree based on the outgroups Equus caballus and Sus scrofa with the command `root()`.
+
+```{r}
+nj_tree <- root(nj_tree, outgroup = c('Mus_musculus', 'Rattus_norvegicus'))
+
+plot(nj_tree)
+```
+
+I build the same tree as before with a different method (UPGMA) using the command `upgma()`.
+
+```{r}
+upgma_tree <- upgma(dist_mat)
+upgma_tree <- root(upgma_tree, outgroup = c('Mus_musculus', 'Rattus_norvegicus'))
+
+plot(upgma_tree)
+plot(upgma_tree, type = 'unrooted')
+```
+
+Then I bootstrap my tree with `bootstrap.phyDat()`, which takes a _phangorn_ msa-list and a tree-building function as inputs. **Bootstrapping** a tree means to validate its branch robustness by comparing multiple trees created through the alignment of a random subset of columns of the distance matrix.
+
+```{r}
+make_phylo <- function(msa) {
+  tree <- NJ(dist.ml(msa, model = 'Blosum62'))
+}
+
+boot <- bootstrap.phyDat(msa, make_phylo)
+```
+
+This technique also gives me a **bootstrapping value** for each branch, which measures the specific robustness of that partticular branch (from 0 to 100 or from 0 to 1).
+
+```{r}
+nj_tree_bs <- plotBS(nj_tree, boot, type = 'none')
+plot(nj_tree_bs, show.node.label = TRUE)
+```
+
+I plot my phylogenetic tree along with bootstrapping values in a more readable way.
+
+```{r}
+plot(nj_tree_bs)
+nodelabels(nj_tree_bs$node.label)
+```
+
+ML methods do not construct absolutely true phylogenetic trees. Instead, they estimate the best _likelihood_ out of many possible constructions. Therefore, **likelihood function** and **AIC** (Akaike Information Criterion) have to be analysed.
+
+```{r}
+nj_tree_pml <- pml(nj_tree, msa, model = 'Blosum62')
+nj_tree_pml
+```
+
+The less negative the log likelihood, the better.
+
+The object _nj_tree_pml_ no longer belongs to the class _phylo_ To get the actual tree from it, I need to run the line `nj_tree_pml$tree`.
+
+```{r}
+AIC(nj_tree_pml)
+```
+
+The less positive the AIC, the better.
+
+I optimise the nj tree with Machine Learning by using the command `optim.pml()` and graphically compare it to the original version.
+
+```{r}
+ml_tree <- optim.pml(nj_tree_pml, rearrangement = 'NNI')
+ml_tree
+AIC(ml_tree)
+
+plot(nj_tree)
+plot(ml_tree)
+```
+
+Finally, I bootstrap my optimised version of the nj tree and I go home happy.
+
+```{r, echo = TRUE, results = FALSE}
+boot_ml <- bootstrap.pml(ml_tree)
+```
+
+```{r}
+boot_tree <- plotBS(ml_tree$tree, boot_ml, type = 'none')
+
+plot(boot_tree)
+nodelabels(boot_tree$node.label)
+```
+
+Bootstrapping gave a very robust tree according to the bootstrapping values. However, this representation might not be flawless, therefore these results must be compared with the phylogenetic tree returned by clustalw.

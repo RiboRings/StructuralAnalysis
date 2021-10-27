@@ -1,0 +1,47 @@
+CLUSTAL
+
+granzyme_B_precursor_[Sus_scrofa]/1-248                      MQPLLLLLSLAFLLPPRAEAGEIIGGHEAKPHSRPYMAYLQIQDQDN-RSRCGGFLIRED
+granzyme_B_precursor_[Equus_caballus]_/1-247                 --MQLLLLLLAFLLSPGTEAGEIIGGHEARPHSRPYMALVQFLVEEK-KHRCGGVLVRQD
+[GRAB_HUMAN]/1-247                                           --MQPILLLLAFLLLPRADAGEIIGGHEAKPHSRPYMAYLMIWDQKS-LKRCGGFLIRDD
+granzyme_B_isoform_2_[Homo_sapiens]_/1-235                   --------------MQTFPSGEIIGGHEAKPHSRPYMAYLMIWDQKS-LKRCGGFLIRDD
+granzyme_B_precursor_[Macaca_nemestrina]_/1-247              --MQPILLLLAFLLLPRTDAGEIIGGHEAKPHSRPYMAYLMIWDQMS-LKRCGGFLIRED
+granzyme_B_precursor_[Callithrix_jacchus]_/1-270             --MQPILLLLAFLLLPRADAGEIIGGHEAKPHSHPYMAYLAIWDQES-LKRCGGFLVRED
+granzyme-like_protein_1_precursor_[Rattus_norvegicus]_/1-248 --MKLLLLLLSFSLAPKTEAGEIIGGHEAKPHSRPYMAYLQIMDEYSGSKKCGGFLIRED
+granzyme_B(G,H)_preproprotein_[Mus_musculus]_/1-247          --MKILLLLLTLSLASRTKAGEIIGGHEVKPHSRPYMALLSIKDQQP-EAICGGFLIRED
+
+granzyme_B_precursor_[Sus_scrofa]/1-248                      FVLTAAHCWGSSINVTLGAHNIKKQEETQQVIPVRKAIRHPDYNEKRISNDIMLLQLERK
+granzyme_B_precursor_[Equus_caballus]_/1-247                 FVLTAAHCWGSSFKVTLGAHDIEKQETTQQNFSVKAAIPHPDYNPKNYSNDIMLLKLERK
+[GRAB_HUMAN]/1-247                                           FVLTAAHCWGSSINVTLGAHNIKEQEPTQQFIPVKRPIPHPAYNPKNFSNDIMLLQLERK
+granzyme_B_isoform_2_[Homo_sapiens]_/1-235                   FVLTAAHCWGSSINVTLGAHNIKEQEPTQQFIPVKRPIPHPAYNPKNFSNDIMLLQLERK
+granzyme_B_precursor_[Macaca_nemestrina]_/1-247              FVLTAAHCWGSSINVTLGAHNIKEQERTQQIIPVKRAIPHPAYNPENFSNDIMLLQLERK
+granzyme_B_precursor_[Callithrix_jacchus]_/1-270             FVLTAAHCWGSSINVTLGAHNIKKQERTQQSMPVRRTFCHPDYNPENFSSDIMLLQLERK
+granzyme-like_protein_1_precursor_[Rattus_norvegicus]_/1-248 FVLTAAHCSGSKINVTLGAHNIKEQEKMQQIIPVVKIIPHPAYNSKTISNDIMLLKLKSK
+granzyme_B(G,H)_preproprotein_[Mus_musculus]_/1-247          FVLTAAHCEGSIINVTLGAHNIKEQEKTQQVIPMVKCIPHPDYNPKTFSNDIMLLKLKSK
+
+granzyme_B_precursor_[Sus_scrofa]/1-248                      AKLTKAVKTLGLPGAKARVKPGQVCSVAGWGQVERG-IYTDTLQEVKLTLQKDQECDSYL
+granzyme_B_precursor_[Equus_caballus]_/1-247                 AKLTVAVRTLSLPRAKAQVRPRQVCRVAGWGRVSLMGSFSDTLQEVELTVQQDRECESYL
+[GRAB_HUMAN]/1-247                                           AKRTRAVQPLRLPSNKAQVKPGQTCSVAGWGQTAPLGKHSHTLQEVKMTVQEDRKCESDL
+granzyme_B_isoform_2_[Homo_sapiens]_/1-235                   AKRTRAVQPLRLPSNKAQVKPGQTCSVAGWGQTAPLGKHSHTLQEVKMTVQEDRKCESDL
+granzyme_B_precursor_[Macaca_nemestrina]_/1-247              AKRTTAVQPLRLPRNKAQVKPGQACDVAGWGQTTPDGKYSHTLQEVKLTVEEDQTCKSRL
+granzyme_B_precursor_[Callithrix_jacchus]_/1-270             AKRTTAVQPLRLPSSKAQVKPGQVCSVAGWGRTTPMGTYSHTLQAVNLTVQEDRKCESCL
+granzyme-like_protein_1_precursor_[Rattus_norvegicus]_/1-248 AKRSSAVKPLNLPRRNVKVKPGDVCYVAGWGKLGPMGKYSDTLQEVELTVQEDQKCESYL
+granzyme_B(G,H)_preproprotein_[Mus_musculus]_/1-247          AKRTRAVRPLNLPRRNVNVKPGDVCYVAGWGRMAPMGKYSNTLQEVELTVQKDRECESYF
+
+granzyme_B_precursor_[Sus_scrofa]/1-248                      PNYYNGNTQLCVGDPKKKQATFKGDSGGPLVCNNVAQGIVSYGKKDGTPPRACTKVSSFL
+granzyme_B_precursor_[Equus_caballus]_/1-247                 RNYYNSTTQLCVGDPKEKKSSFKGDSGGPLVCKNVIQGIVSYGRNNGTPPRAFTKVSSFL
+[GRAB_HUMAN]/1-247                                           RHYYDSTIELCVGDPEIKKTSFKGDSGGPLVCNKVAQGIVSYGRNNGMPPRACTKVSSFV
+granzyme_B_isoform_2_[Homo_sapiens]_/1-235                   RHYYDSTIELCVGDPEIKKTSFKGDSGGPLVCNKVAQGIVSYGRNNGMPPRACTKVSSFV
+granzyme_B_precursor_[Macaca_nemestrina]_/1-247              GHYYDSTVELCVGDPEIQKASFKGDSGGPLVCNKVAQGIVSYGQRNGKPPRVCTKVSSFV
+granzyme_B_precursor_[Callithrix_jacchus]_/1-270             RNYYDSTVELCVGDPEIKKASFKGDSGGPLVCNKVAQGIVSHGPRNGKSPRAFTKVSSFV
+granzyme-like_protein_1_precursor_[Rattus_norvegicus]_/1-248 KNYFDKANEICAGDPKIKRASFRGDSGGPLVCKKVAAGIVSYGQNDGSTPRAFTKVSTFL
+granzyme_B(G,H)_preproprotein_[Mus_musculus]_/1-247          KNRYNKTNQICAGDPKTKRASFRGDSGGPLVCKKVAAGIVSYGYKDGSPPRAFTKVSSFL
+
+granzyme_B_precursor_[Sus_scrofa]/1-248                      PWIKKIMKSL-----------------------
+granzyme_B_precursor_[Equus_caballus]_/1-247                 PWIKKTMKSL-----------------------
+[GRAB_HUMAN]/1-247                                           HWIKKTMKRY-----------------------
+granzyme_B_isoform_2_[Homo_sapiens]_/1-235                   HWIKKTMKRY-----------------------
+granzyme_B_precursor_[Macaca_nemestrina]_/1-247              RWIKKTMKRH-----------------------
+granzyme_B_precursor_[Callithrix_jacchus]_/1-270             HWIKKTMRPGTMAYTCNPRTLGGRGRWITRSRV
+granzyme-like_protein_1_precursor_[Rattus_norvegicus]_/1-248 SWIKKTMKKS-----------------------
+granzyme_B(G,H)_preproprotein_[Mus_musculus]_/1-247          SWIKKTMKSS-----------------------
+

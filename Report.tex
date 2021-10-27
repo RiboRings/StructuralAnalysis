@@ -1,0 +1,390 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={A Structural Analysis of Human Granzyme B},
+  pdfauthor={Giulio Benedetti},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs}
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+
+\title{A Structural Analysis of Human Granzyme B}
+\author{Giulio Benedetti}
+\date{7/3/2021}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\hypertarget{abstract}{%
+\subsection*{1. Abstract}\label{abstract}}
+\addcontentsline{toc}{subsection}{1. Abstract}
+
+\textbf{Background:} Protein complexity arises from surprisingly simple building blocks, such as motifs and domains. Therefore, the functionality of topologically similar proteins can be predicted based on their elementary components. Such knowledge can also be transferred to newly discovered proteins, whose functions are not yet known. Due to the great variety of available Bioinformatics tools, it might be complicated to choose the right one for the addressed question. The goal of this report lies in demonstrating the proper use of some of these tools to conduct a structural analysis of the human Granzyme B.
+
+\textbf{Results:} The human Granzyme B was identified as such via BLAST and its topological domains were predicted with multiple software. Its sequence was then three-dimensionally aligned to that of a similar protein, Granzyme H, which proved intermediate sequence conservation but high structure conservation. Next, an MSA was performed among various orthologs of Granzyme B and the corresponding phylogenetic tree was thereby reconstructed. This resulted in a visual interpretation of the evolutionary pattern of Granzyme B as well as an assessment of its conserved regions.
+
+\textbf{Conclusions:} The immunological importance of Granzyme B as well as the Granzyme family is shown by the presence of these enzymes among several animals, where their sequences and binding sites might not necessarily stay unmodified. This variability could trigger enzyme paralogs as well as orthologs to target a large number of substrates, reflecting the proteomes of various pathogens. Finally, the Tripsin motif present in Granzyme B might cause the pyrolytic activity of this enzyme.
+
+\textbf{Keywords:} protease Granzyme B, CD8+ T lymphocyte and NKT cell, BLAST, secondary structure analysis, multiple sequence alignment (MSA)
+
+\hypertarget{background}{%
+\subsection*{2. Background}\label{background}}
+\addcontentsline{toc}{subsection}{2. Background}
+
+The systematic analysis of protein structures has enabled researchers to connect the geometry of a protein with the functions it performs. As this knowledge broadens to newly discovered enzymes, their activity can be predicted based on their elementary components, such as motifs and domains, which often underpin the observed functionality. Similarly to incredible constructions built from simple LEGO bricks, several proteins arise from assembling the identical set of building blocks in different ways. A greater understanding of how proteins are assembled in terms of their topological elements could lead to important achievements, such as drug synthesis and plastic digestion.
+
+Since the original research introduced traditionally accepted methods, such as the PAM\textsuperscript{1} and BLOSUM\textsuperscript{2} score matrices or the Chou-Fasman algorithm\textsuperscript{3}, the techniques of choice have dramatically advanced to achieve a large variety of open source multifunctional as well as single-function software. In the same line, high-throughput sequencing, enzyme engineering through directed evolution and targeted mutagenesis, but also the simple fact that the scientific community is increasing in size, have produced a massive amount of data to be interpreted, demanding for a faster and more effective analytical framework. The amount of Bioinformatics tools available online might seem overwhelming, therefore young scientists must be prepared to ponder benefits and drawbacks of each of those tools and select the appropriate ones for the question to address.
+
+Assuming such a mindset, in this report a structural analysis is conducted on an unknown protein, which is then identified as human Granzyme B. This protease is found in the cytosolic granules of CD8+ and TNK cells and is responsible for the apoptosis of target damaged cells in the context of the immune system.\textsuperscript{4}\textsuperscript{5}\textsuperscript{6}
+
+\hypertarget{methods}{%
+\subsection*{3. Methods}\label{methods}}
+\addcontentsline{toc}{subsection}{3. Methods}
+
+\hypertarget{protein-identification}{%
+\paragraph{3.1. protein identification}\label{protein-identification}}
+\addcontentsline{toc}{paragraph}{3.1. protein identification}
+
+The mysterious protein ID6299 was obtained from the \href{https://github.com/january3/Bioinformatics/tree/main/Report/Sequences}{collection of proteins} kindly provided by Dr.~J. Weiner. It was identified through a BLAST search across the reference protein database (refseq\_protein).\textsuperscript{7} The same query was also aligned through PSI-BLAST and within multiple databases (nr and swissprot).\textsuperscript{8} Additional information on the enzyme was collected from its UniProt overview.\textsuperscript{9}
+
+\hypertarget{secondary-structure-prediction}{%
+\paragraph{3.2. secondary structure prediction}\label{secondary-structure-prediction}}
+\addcontentsline{toc}{paragraph}{3.2. secondary structure prediction}
+
+The online software PredictProtein was employed to predict the features of Granzyme B (secondary structure and sequence conservation).\textsuperscript{10} The predictions on aminoacid sequence and coiled-coil abundance were validated by two additional tools: Protscale\textsuperscript{11} and COILS\textsuperscript{12}, respectively.
+
+\hypertarget{protein-domains-determination}{%
+\paragraph{3.3. protein domains determination}\label{protein-domains-determination}}
+\addcontentsline{toc}{paragraph}{3.3. protein domains determination}
+
+Further analyses on the structural domains of Granzyme B were conducted within the two large databases Pfam\textsuperscript{13} and PDB\textsuperscript{14}. In the former, protein motifs and domains were characterised with a comparative approach, whereas in the latter it was visualised as a christallographic reconstruction.
+
+\hypertarget{secondary-structure-alignment}{%
+\paragraph{3.4. secondary structure alignment}\label{secondary-structure-alignment}}
+\addcontentsline{toc}{paragraph}{3.4. secondary structure alignment}
+
+The Protein Databank was blasted for similar proteins to Granzyme B\textsuperscript{15}, from whose results human Granzyme H\textsuperscript{16} was selected. Next, the christallographic constructions of the two enzymes were found on the PDB database and their identifiers were passed to the DALI server so as to align their secondary structures with one another.\textsuperscript{17}
+
+\hypertarget{multiple-sequence-alignment}{%
+\paragraph{3.5. multiple sequence alignment}\label{multiple-sequence-alignment}}
+\addcontentsline{toc}{paragraph}{3.5. multiple sequence alignment}
+
+The NCBI BLAST tool was once again run across the nr database with the sequence of Granzyme B as a query. Its results were assessed in combination with the MSAs returned by PredictProtein and \href{https://www.ncbi.nlm.nih.gov/homologene}{HomoloGene} to select 7 elements to include in the MSA, which was generated with the EMBL-EBI tool clustalw\textsuperscript{18} and confirmed with clustal Omega\textsuperscript{19}. Results of the latter were visualised with the local software Jalview.\textsuperscript{20}
+
+\hypertarget{sequence-reconstruction}{%
+\paragraph{3.6. sequence reconstruction}\label{sequence-reconstruction}}
+\addcontentsline{toc}{paragraph}{3.6. sequence reconstruction}
+
+the R packages \emph{phangorn 2.7.0}\textsuperscript{21}, \emph{BiocManager 1.30.16}\textsuperscript{22} and \emph{seqinr}\textsuperscript{23} were used to create, optimise and bootstrap a phylogenetic tree out of the MSA. The resulting phylogenetric tree was compared with the dendogram provided by clustalw upon multiple sequence alignment.\textsuperscript{24}\textsuperscript{25}
+
+\hypertarget{operational-settings}{%
+\paragraph{3.7. operational settings}\label{operational-settings}}
+\addcontentsline{toc}{paragraph}{3.7. operational settings}
+
+Unless reported, the operational settings of the aforementioned tools were kept at default.
+
+\hypertarget{results}{%
+\subsection*{4. Results}\label{results}}
+\addcontentsline{toc}{subsection}{4. Results}
+
+\hypertarget{granzyme-b-characterisation}{%
+\paragraph{4.1. Granzyme B characterisation}\label{granzyme-b-characterisation}}
+\addcontentsline{toc}{paragraph}{4.1. Granzyme B characterisation}
+
+The unknown amino acid sequence was identified as Granzyme B isoform 1 preproprotein from H. sapiens (first hit). The same query produced analogous hits when aligned with standard BLAST and PSI-BLAST across multiple databases (Figures \ref{fig:Fig1a} and \ref{fig:Fig1b}). For further characterisation, the function and subcellular location of Granzyme B were studied: the protein is normally found whether in the extracellular matrix or within the cytosolic granules of CD8+ and NKT lymphocytes, which deliver it into the target cells to activate the apoptotic mechanism of caspase-independent pyroptosis (Figure \ref{fig:Fig1c}).
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{protein identification/BLAST identification} 
+
+}
+
+\caption{Alignment of ID6299 with the first hit of the BLAST search. The score, E-value and percent identity suggest that the two sequences were matched flawlessly.}\label{fig:Fig1a}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{protein identification/first_10_hits} 
+
+}
+
+\caption{First 10 hits of the BLAST search. All best matched organisms belong to the primates. However, the minuscule E-value of hit 1 and the appearance of two human isoforms (hit 1 and hit 4) indicates the human origin of the protein.}\label{fig:Fig1b}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{protein identification/subcellular_location} 
+
+}
+
+\caption{Subcellular location of Granzyme B. The yellow regions correspond to the extracellular matrix and the cytosolic granules of T cells, respectively. The enzyme is shipped to the cell membrane with a vescicle and then transferred to the target cell through an immunological synapsis.}\label{fig:Fig1c}
+\end{figure}
+
+\hypertarget{structural-and-topological-prediction}{%
+\paragraph{4.2. structural and topological prediction}\label{structural-and-topological-prediction}}
+\addcontentsline{toc}{paragraph}{4.2. structural and topological prediction}
+
+The results of the structural analysis showed that Granzyme B contains several \(\beta\) sheets and a small amount of \(\alpha\) helices. However, the largest portion of this enzyme is composed of other domains. Besides, the amino acid sequence does not appear to be highly conserved, as there are at least as many significantly low-conservation segments as there are high-conservation ones (Figure \ref{fig:Fig2a}). To determine what other domains apart from multiple \(\beta\) sheet and only few \(\alpha\) helix regions form the protein, its sequence was inspected for the presence of potential coiled-coil motifs, which proved not to be the case.
+
+Next, the databases Pfam and PDB were browsed in parallel to examine the topology of Granzyme with a holistic approach. On the one hand, the results clarified that Granzyme B is composed of one Trypsin motif (length: 219 amino acids) as well as several small disordered fragments (Figure \ref{fig:Fig2b}). On the other hand, it was shown that the protein arises from the combination of two homologous subunits hold together via intermolecular interactions (Figure \ref{fig:Fig2c}).
+
+\begin{figure}
+
+{\centering \includegraphics[width=1\linewidth]{secondary structure prediction/predicted_features} 
+
+}
+
+\caption{Predicted features for the entire legth of human Granzyme B (247 amino acids). Predictions of secondary structure, conservation, protein binding and other properties were returned by PredictProtein. The colour scales are described in detail within the each category.}\label{fig:Fig2a}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.3\linewidth]{motif analysis/pfam_table} 
+
+}
+
+\caption{Tabular overview on elementary domains forming Granzyme B. The Trypsin motif spans the largest region (length: 219 amino acids), whereas disordered fragments of 2-10 amino acids are evenly distributed over the sequence}\label{fig:Fig2b}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{secondary structure visualisation/1fq3_structure} 
+
+}
+
+\caption{Christallographic reconstruction of Granzyme B. The two subunits are coloured by secondary structure: yellow stands for strands, magenta for helices, blue for disordered regions and violet for other.}\label{fig:Fig2c}
+\end{figure}
+
+\hypertarget{comparison-with-granzyme-h}{%
+\paragraph{4.3. comparison with Granzyme H}\label{comparison-with-granzyme-h}}
+\addcontentsline{toc}{paragraph}{4.3. comparison with Granzyme H}
+
+Secondary structure alignments help visualise the regions of high and low similarity between two enzymes, which catalise a common reaction or share the analogous biochemical properties. In this way, it is possible to draw conclusions on the location of their binding sites and their mode of action. As reported in Figure \ref{fig:Fig3a}, the human protease Granzyme H resulted as a high similarity hit of Granzyme B through BLAST and PSI-BLAST across the PDB database, therefore the structures of the two proteins were aligned and compared in terms of sequence and structure conservation (Figures \ref{fig:Fig3b} and \ref{fig:Fig3c}). Despite a relatively high sequence variability at some particular sites, the secondary structure is firmly conserved.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{secondary structure alignment/sequence_alignment} 
+
+}
+
+\caption{Sequence alignment of human Granzymes B and H. The amino acid sequences of Granzymes B and H correspond to the upper and the lower strands, respectively. The letters above and below the alignment indicate whether the amino acid most likely lies within a helix (H), strand (E) or other region (L). Amino acids from position 121 on seem to match less ideally than those upstream.}\label{fig:Fig3a}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{secondary structure alignment/sequence_conservation} 
+
+}
+
+\caption{Pairwise alignment by sequence conservation. Granzyme B is represented with the orange backbone and Granzyme H with the green one. The multiple blue sites reflect regions of low similarity between the sequences.}\label{fig:Fig3b}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{secondary structure alignment/structure_conservation} 
+
+}
+
+\caption{Pairwise alignment by structure conservation. Granzyme B is represented with the orange backbone and Granzyme H with the blue one. The few green sites reflect regions of low similarity between the structures.}\label{fig:Fig3c}
+\end{figure}
+
+\hypertarget{results-of-msa}{%
+\paragraph{4.4. results of MSA}\label{results-of-msa}}
+\addcontentsline{toc}{paragraph}{4.4. results of MSA}
+
+The sequences of six orthologs and one variant of human Granzyme B were selected so that the MSA could account for various degrees of similarity with respect to human Granzyme B. Figure \ref{fig:Fig4a} illustrates that, despite a relatively high variability, structural and biochemical properties are preserved across the orthologs. Moreover, the initial segments of most sequences (from position 3 to 15) exhibit a common repeated pattern which is cleaved when the precursor protein becomes mature.
+
+The obtained MSA was then employed to reconstruct the phylogenetic tree of the protein orthologs, which well reflects the evolutionary relationships among the selected mammalian species (Figure \ref{fig:Fig4b}). Additionally, the sequence reconstruction was validated by comparison with the analogous clustalw dendogram.
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.6\linewidth]{MSA/msa_clustal_omega} 
+
+}
+
+\caption{MSA among several orthologs of Granzyme B. Colours refer to the clustalx scale and provide a measure of structure conservation.}\label{fig:Fig4a}
+\end{figure}
+
+\begin{figure}
+
+{\centering \includegraphics[width=0.8\linewidth]{sequence reconstruction/phylotree_mus} 
+
+}
+
+\caption{Sequence reconstruction of the Granzyme family. The tree was generated with the upgma algorithm and rooted with M. musculus and R. norvegicous as the outgroups. Bootstrapping values are reported on top of the corresponding branches. The element GRAB HUMAN refers to human Granzyme B, whereas H. sapiens to isoform 2 of the same enzyme.}\label{fig:Fig4b}
+\end{figure}
+
+\hypertarget{conclusions}{%
+\subsection*{5. Conclusions}\label{conclusions}}
+\addcontentsline{toc}{subsection}{5. Conclusions}
+
+Generally speaking, this analysis draws to the following points:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  The Tripsin motif could be responsible for the proteolytic activity of Granzyme B;
+\item
+  Proteins from the Granzyme family, such as Granzyme B and H, exhibit a high structure conservation despite some differences at the sequence level;
+\item
+  Granzyme B is very recurrent in nature as an essential element of the immune system of several animals;
+\item
+  The sequence of the precursor Granzyme B contains an initial repetitive segment which is maintained across several animals.
+\end{enumerate}
+
+The Tripsin motif was first observed in the serine protease with the same name.\textsuperscript{26} This enzyme is commonly found in the digestive system of multiple vertebrate organisms, where it catalyses protein hydrolysis. Because the Tripsin motif is also present within Granzyme B (Figure \ref{fig:Fig2b}), this element could be responsible for the proteolytic activity at the protein binding site of the enzyme.
+
+Interestingly, from Figure \ref{fig:Fig2a} it is possible to infer that protein binding site of Granzyme B does not fully coincide with the highly conserved regions of the sequence. This feature might lead to a relative substrate unspecificity, which could bring benefits in the fight against pathogens with different proteomes.
+
+Moreover, the sequence variability of the binding site, if present in other members of the Granzyme family, could explain why different Granzymes bind to and catalyse the hydrolysis of different proteins. What was unraveled, however, is that changes in the amino acid sequence of these enzymes do not remarkably affect their secondary structures (Figures \ref{fig:Fig3b} and \ref{fig:Fig3c}). This aspect should be subject of deeper analysis in the future.
+
+The Granzyme family plays an essential role in the adaptive immune response against viral and bacterial intracellular pathogens, therefore its presence and conservation among several animals, such as those included in Figure \ref{fig:Fig4b}, is not surprising. Additionally, the initial DNA fragment which defines a precursor protein of Granzyme B is conserved across most animals. This suggests that such organisms might coordinate the transcription as well as post-translational modifications of this proteins through analogous mechanisms.
+
+Taken all together, this report shows the incredibly large amount of information on a protein that a structural analysis \emph{in silico} can convey. In the future, this type of investigation will likely cover an increasingly important position in the discovery of new drugs, the mining of usable natural compounds as well as the response to the climate crisis.
+
+\hypertarget{references}{%
+\subsection*{6. References}\label{references}}
+\addcontentsline{toc}{subsection}{6. References}
+
+\hypertarget{refs}{}
+\leavevmode\hypertarget{ref-dayhoff197822}{}%
+1. Dayhoff, M., Schwartz, R. \& Orcutt, B. 22 a model of evolutionary change in proteins. \emph{Atlas of protein sequence and structure} \textbf{5}, 345--352 (1978).
+
+\leavevmode\hypertarget{ref-henikoff1992amino}{}%
+2. Henikoff, S. \& Henikoff, J. G. Amino acid substitution matrices from protein blocks. \emph{Proceedings of the National Academy of Sciences} \textbf{89}, 10915--10919 (1992).
+
+\leavevmode\hypertarget{ref-chou1974prediction}{}%
+3. Chou, P. Y. \& Fasman, G. D. Prediction of protein conformation. \emph{Biochemistry} \textbf{13}, 222--245 (1974).
+
+\leavevmode\hypertarget{ref-krahenbuhl1988characterization}{}%
+4. Krähenbühl, O. \emph{et al.} Characterization of granzymes a and b isolated from granules of cloned human cytotoxic t lymphocytes. \emph{The Journal of Immunology} \textbf{141}, 3471--3477 (1988).
+
+\leavevmode\hypertarget{ref-hameed1988characterization}{}%
+5. Hameed, A., Lowrey, D., Lichtenheld, M. \& Podack, E. Characterization of three serine esterases isolated from human il-2 activated killer cells. \emph{The Journal of Immunology} \textbf{141}, 3142--3147 (1988).
+
+\leavevmode\hypertarget{ref-poe1991human}{}%
+6. Poe, M. \emph{et al.} Human cytotoxic lymphocyte granzyme b. Its purification from granules and the characterization of substrate and inhibitor specificity. \emph{Journal of Biological Chemistry} \textbf{266}, 98--103 (1991).
+
+\leavevmode\hypertarget{ref-altschul1990basic}{}%
+7. Altschul, S. F., Gish, W., Miller, W., Myers, E. W. \& Lipman, D. J. Basic local alignment search tool. \emph{Journal of molecular biology} \textbf{215}, 403--410 (1990).
+
+\leavevmode\hypertarget{ref-altschul1997gapped}{}%
+8. Altschul, S. F. \emph{et al.} Gapped blast and psi-blast: A new generation of protein database search programs. \emph{Nucleic acids research} \textbf{25}, 3389--3402 (1997).
+
+\leavevmode\hypertarget{ref-apweiler2004uniprot}{}%
+9. Apweiler, R. \emph{et al.} UniProt: The universal protein knowledgebase. \emph{Nucleic acids research} \textbf{32}, D115--D119 (2004).
+
+\leavevmode\hypertarget{ref-rost2004predictprotein}{}%
+10. Rost, B., Yachdav, G. \& Liu, J. The predictprotein server. \emph{Nucleic acids research} \textbf{32}, W321--W326 (2004).
+
+\leavevmode\hypertarget{ref-gasteiger2005protein}{}%
+11. Gasteiger, E. \emph{et al.} Protein identification and analysis tools on the expasy server. \emph{The proteomics protocols handbook} 571--607 (2005).
+
+\leavevmode\hypertarget{ref-lupas1991predicting}{}%
+12. Lupas, A., Van Dyke, M. \& Stock, J. Predicting coiled coils from protein sequences. \emph{Science} 1162--1164 (1991).
+
+\leavevmode\hypertarget{ref-bateman2004pfam}{}%
+13. Bateman, A. \emph{et al.} The pfam protein families database. \emph{Nucleic acids research} \textbf{32}, D138--D141 (2004).
+
+\leavevmode\hypertarget{ref-sussman1998protein}{}%
+14. Sussman, J. L. \emph{et al.} Protein data bank (pdb): Database of three-dimensional structural information of biological macromolecules. \emph{Acta Crystallographica Section D: Biological Crystallography} \textbf{54}, 1078--1084 (1998).
+
+\leavevmode\hypertarget{ref-estebanez2000crystal}{}%
+15. Estébanez-Perpiñá, E. \emph{et al.} Crystal structure of the caspase activator human granzyme b, a proteinase highly specific for an asp-p1 residue. (2000).
+
+\leavevmode\hypertarget{ref-wang2012structural}{}%
+16. Wang, L. \emph{et al.} Structural insights into the substrate specificity of human granzyme h: The functional roles of a novel rkr motif. \emph{The Journal of Immunology} \textbf{188}, 765--773 (2012).
+
+\leavevmode\hypertarget{ref-thompson1994clustal}{}%
+18. Thompson, J. D., Higgins, D. G. \& Gibson, T. J. CLUSTAL w: Improving the sensitivity of progressive multiple sequence alignment through sequence weighting, position-specific gap penalties and weight matrix choice. \emph{Nucleic acids research} \textbf{22}, 4673--4680 (1994).
+
+\leavevmode\hypertarget{ref-sievers2011fast}{}%
+19. Sievers, F. \emph{et al.} Fast, scalable generation of high-quality protein multiple sequence alignments using clustal omega. \emph{Molecular systems biology} \textbf{7}, 539 (2011).
+
+\leavevmode\hypertarget{ref-waterhouse2009jalview}{}%
+20. Waterhouse, A. M., Procter, J. B., Martin, D. M., Clamp, M. \& Barton, G. J. Jalview version 2---a multiple sequence alignment editor and analysis workbench. \emph{Bioinformatics} \textbf{25}, 1189--1191 (2009).
+
+\leavevmode\hypertarget{ref-phangorn2011package}{}%
+21. Schliep \emph{et al.} Intertwining phylogenetic trees and networks. \emph{Methods in Ecology and Evolution} \textbf{8}, 1212--1220 (2017).
+
+\leavevmode\hypertarget{ref-manager2021package}{}%
+22. Morgan, M. \emph{BiocManager: Access the bioconductor project package repository}. (2021).
+
+\leavevmode\hypertarget{ref-seqinr2007package}{}%
+23. Charif, D. \& Lobry, J. R. SeqinR 1.0-2: A contributed package to the R project for statistical computing devoted to biological sequences retrieval and analysis. in \emph{Structural approaches to sequence evolution: Molecules, networks, populations} (eds. Bastolla, U., Porto, M., Roman, H. E. \& Vendruscolo, M.) 207--232 (Springer Verlag, 2007).
+
+\leavevmode\hypertarget{ref-r2021language}{}%
+24. R Core Team. \emph{R: A language and environment for statistical computing}. (R Foundation for Statistical Computing, 2021).
+
+\leavevmode\hypertarget{ref-rstudio2020ide}{}%
+25. RStudio Team. \emph{RStudio: Integrated development environment for r}. (RStudio, PBC, 2020).
+
+\leavevmode\hypertarget{ref-koshikawa1994identification}{}%
+26. Koshikawa, N., Yasumitsu, H., Nagashima, Y., Umeda, M. \& Miyazaki, K. Identification of one-and two-chain forms of trypsinogen 1 produced by a human gastric adenocarcinoma cell line. \emph{Biochemical Journal} \textbf{303}, 187--190 (1994).
+
+\end{document}

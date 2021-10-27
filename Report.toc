@@ -1,0 +1,28 @@
+\contentsline {subsection}{1. Abstract}{1}{section*.2}%
+\contentsline {subsection}{2. Background}{1}{section*.3}%
+\contentsline {subsection}{3. Methods}{2}{section*.4}%
+\contentsline {paragraph}{3.1. protein identification}{2}{paragraph.0.0.0.1}%
+\contentsline {paragraph}{\numberline {0.0.0.1}3.1. protein identification}{2}{paragraph.0.0.0.1}%
+\contentsline {paragraph}{3.2. secondary structure prediction}{2}{paragraph.0.0.0.2}%
+\contentsline {paragraph}{\numberline {0.0.0.2}3.2. secondary structure prediction}{2}{paragraph.0.0.0.2}%
+\contentsline {paragraph}{3.3. protein domains determination}{2}{paragraph.0.0.0.3}%
+\contentsline {paragraph}{\numberline {0.0.0.3}3.3. protein domains determination}{2}{paragraph.0.0.0.3}%
+\contentsline {paragraph}{3.4. secondary structure alignment}{2}{paragraph.0.0.0.4}%
+\contentsline {paragraph}{\numberline {0.0.0.4}3.4. secondary structure alignment}{2}{paragraph.0.0.0.4}%
+\contentsline {paragraph}{3.5. multiple sequence alignment}{2}{paragraph.0.0.0.5}%
+\contentsline {paragraph}{\numberline {0.0.0.5}3.5. multiple sequence alignment}{2}{paragraph.0.0.0.5}%
+\contentsline {paragraph}{3.6. sequence reconstruction}{2}{paragraph.0.0.0.6}%
+\contentsline {paragraph}{\numberline {0.0.0.6}3.6. sequence reconstruction}{2}{paragraph.0.0.0.6}%
+\contentsline {paragraph}{3.7. operational settings}{2}{paragraph.0.0.0.7}%
+\contentsline {paragraph}{\numberline {0.0.0.7}3.7. operational settings}{2}{paragraph.0.0.0.7}%
+\contentsline {subsection}{4. Results}{2}{section*.5}%
+\contentsline {paragraph}{4.1. Granzyme B characterisation}{2}{paragraph.0.0.0.8}%
+\contentsline {paragraph}{\numberline {0.0.0.8}4.1. Granzyme B characterisation}{2}{paragraph.0.0.0.8}%
+\contentsline {paragraph}{4.2. structural and topological prediction}{3}{paragraph.0.0.0.9}%
+\contentsline {paragraph}{\numberline {0.0.0.9}4.2. structural and topological prediction}{3}{paragraph.0.0.0.9}%
+\contentsline {paragraph}{4.3. comparison with Granzyme H}{5}{paragraph.0.0.0.10}%
+\contentsline {paragraph}{\numberline {0.0.0.10}4.3. comparison with Granzyme H}{5}{paragraph.0.0.0.10}%
+\contentsline {paragraph}{4.4. results of MSA}{5}{paragraph.0.0.0.11}%
+\contentsline {paragraph}{\numberline {0.0.0.11}4.4. results of MSA}{8}{paragraph.0.0.0.11}%
+\contentsline {subsection}{5. Conclusions}{8}{section*.6}%
+\contentsline {subsection}{6. References}{9}{section*.7}%
